@@ -17,8 +17,8 @@ async function showMessage(elem, url) {
 
 // 2. Create a function `showList` that takes two parameters: an element and a string that is a URL. The function will fetch the URL, parse the retrieved data as JSON; the data is guaranteed to be an array of strings. The function will then, like the `filler` function in `dom101`, put the contents of the array as list items into the provided element.
 async function showList(elem, url) {
-  const rep = await fetch(url);
-  const json = await rep.json();
+  const resp = await fetch(url);
+  const json = await resp.json();
 
   for (const text of json) {
     const li = document.createElement('li');
@@ -36,8 +36,8 @@ function startShowingMessage(elem, url) {
 
 // 4. Create a function 'handleError' that accepts an element and a url as a parameter, and shows the fetched text from the server in the element. If there is an error, the function should set the textContent of the element to 'OH DEAR'.
 async function handleError(elem, url) {
-  const rep = await fetch(url);
-  elem.innerHTML = rep.ok ? await rep.text() : 'OH DEAR';
+  const resp = await fetch(url);
+  elem.innerHTML = resp.ok ? await resp.text() : 'OH DEAR';
 }
 
 // 5. Create a function `drawBox', which accepts two parameters: a canvas element, and a URL which refers to a simple object with coordinates that you should fetch from a server. The function draws a 10x10 filled black box at the given coordinates. Your drawBox function should update the coordinates and redraw the box every 1 second.
@@ -46,8 +46,8 @@ function drawBox(canvas, url) {
 
   // function in a function? are we allowing this heresy?
   async function updateBox() {
-    const rep = await fetch(url);
-    const json = await rep.json();
+    const resp = await fetch(url);
+    const json = await resp.json();
 
     canvasContext.clearRect(0, 0, canvas.width, canvas.height); // clear canvas
     canvasContext.fillStyle = 'black';
